@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {EventsService} from "../../../events/events.service";
+import {EventsService} from "../../../services/events/events.service";
 
 declare let $: any;
 

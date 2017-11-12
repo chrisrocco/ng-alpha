@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MarketService} from "../../services/market/market.service";
+import {AppUsersService} from "../../services/app-users/app-users.service";
 
 @Component({
     selector: 'app-forms',
@@ -11,10 +12,27 @@ export class FormsComponent implements OnInit {
     markets;
     selectedMarket;
 
+    userSearch;
+    usersOriginal;
     users;
-    selected;
+    selectedUser;
 
-    constructor(private marketService: MarketService) { }
+    constructor(
+        private marketService: MarketService,
+        private appUsersService: AppUsersService
+    ) { }
+
+    selectUser( user ){
+        this.selectedUser = user;
+        this.filterUsers(user.name);
+    }
+
+    filterUsers( search ){
+        search = search.toLowerCase();
+        this.users = this.usersOriginal.filter( user => {
+            return user.name.toLowerCase().includes(search);
+        })
+    }
 
     ngOnInit() {
         this.marketService.all()
@@ -22,6 +40,11 @@ export class FormsComponent implements OnInit {
                 this.markets = data;
                 this.selectedMarket = data[0];
             });
+        this.appUsersService.all()
+            .subscribe(data => {
+                this.usersOriginal = data;
+                this.users = data;
+            })
     }
 
 }

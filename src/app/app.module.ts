@@ -9,7 +9,6 @@ import {AuthService} from "./auth/auth.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service"
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {EventsService} from "./events/events.service";
 import { AdminEventsComponent } from './pages/events/admin-events/admin-events.component';
 import {UserService} from "./auth/user.service";
 import {LoginComponent} from "./pages/login/login.component";
@@ -17,6 +16,8 @@ import {RegisterComponent} from "./pages/register/register.component";
 
 import {MaterializeModule} from "angular2-materialize";
 import {MarketService} from "./services/market/market.service";
+import {AppUsersService} from "./services/app-users/app-users.service";
+import {EventsService} from "./services/events/events.service";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {MarketService} from "./services/market/market.service";
         AuthService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
         EventsService,
-        MarketService
+        MarketService,
+        AppUsersService
     ],
     bootstrap: [AppComponent]
 })
