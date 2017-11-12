@@ -26,13 +26,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.login(
             this.form_model.email,
             this.form_model.password
-        ).subscribe(
-            win => {
-                this.router.navigateByUrl('/dashboard');
-            },
-            err => {
-                swal("invalid login");
-            }
+        ).then(
+            win => this.router.navigateByUrl('/dashboard'),
+            err => swal("invalid login")
         );
     }
 
