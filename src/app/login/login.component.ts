@@ -23,10 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ) {}
 
     handleLogin() {
-        this.authService.login(
-            this.form_model.email,
-            this.form_model.password
-        ).then(
+        this.authService.login( this.form_model ).then(
             win => this.router.navigateByUrl('/dashboard'),
             err => swal("invalid login")
         );

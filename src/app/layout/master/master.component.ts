@@ -2,6 +2,7 @@ import {Component, ViewEncapsulation, AfterViewInit} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/User";
+import {UserService} from "../../auth/user.service";
 
 declare let $: any;
 
@@ -11,8 +12,6 @@ declare let $: any;
     encapsulation: ViewEncapsulation.None
 })
 export class MasterComponent implements AfterViewInit {
-
-    user: User;
 
     md_hamburger_icon;
     sidebar_account_settings;
@@ -32,11 +31,10 @@ export class MasterComponent implements AfterViewInit {
     ];
 
     constructor(
+        private userService: UserService,
         private authService: AuthService,
         private router: Router
-    ) {
-        this.user = authService.user;
-    }
+    ) { }
 
     handleLogout(){
         this.authService.logout();

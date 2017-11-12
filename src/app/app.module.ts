@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {EventsService} from "./events/events.service";
 import { AdminEventsComponent } from './pages/events/admin-events/admin-events.component';
+import {UserService} from "./auth/user.service";
 
 @NgModule({
     declarations: [
@@ -31,11 +32,11 @@ import { AdminEventsComponent } from './pages/events/admin-events/admin-events.c
         routing
     ],
     providers: [
+        UserService,
         AuthService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
         EventsService
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

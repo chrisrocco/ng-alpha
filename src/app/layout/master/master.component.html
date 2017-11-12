@@ -338,12 +338,12 @@
     <div class="side-nav-wrapper">
       <div class="sidebar-profile">
         <div class="sidebar-profile-image">
-          <img [src]="user.image" class="circle" alt="">
+          <img [src]="userService.user.image" class="circle" alt="">
         </div>
         <div class="sidebar-profile-info">
           <a (click)="toggleAccountSettings()" href="javascript:void(0);" class="account-settings-link">
-            <p>{{user.name}}</p>
-            <span>{{user.email}}<i class="material-icons right">arrow_drop_down</i></span>
+            <p>{{userService.user.name}}</p>
+            <span>{{userService.user.email}}<i class="material-icons right">arrow_drop_down</i></span>
           </a>
         </div>
       </div>
