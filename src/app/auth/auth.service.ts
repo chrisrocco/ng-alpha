@@ -1,6 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -8,7 +9,7 @@ export class AuthService implements OnInit {
         this.jwt = localStorage.getItem('jwt');
     }
 
-    public jwt: string;
+    jwt: string;
 
     constructor(private http: HttpClient) {}
 
@@ -17,11 +18,22 @@ export class AuthService implements OnInit {
             email: email,
             password: password
         };
-        return this.http.post( "https://api.thechristmascarolers.com/auth/login", form_data)
-            .subscribe(
-                data => console.log(data),
-                err => console.log(err)
-            );
+        return this.http.post( "https://api.thechristmascarolers.com/auth/login", form_data).map((res: Response) => {
+                if(res['jwt']){
+                    let jwt = res['jwt'];
+                    this.jwt = jwt;
+                    localStorage.setItem('jwt', jwt);
+                }
+            });
+    }
+
+    logout(){
+        this.jwt = null;
+        localStorage.removeItem('jwt');
+    }
+
+    getJWT(){
+        return this.jwt;
     }
 
 }
