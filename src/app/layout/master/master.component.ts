@@ -19,16 +19,6 @@ export class MasterComponent implements AfterViewInit {
             icon: "settings_input_svideo",
             route: 'forms'
         },
-        {
-            name: 'Components',
-            icon: 'code',
-            route: '/dashboard'
-        },
-        {
-            name: 'Apps',
-            icon: 'apps',
-            route: '/dashboard'
-        }
     ];
 
     constructor() {}

@@ -369,7 +369,7 @@
       </div>
       <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
         <li *ngFor="let link of sidebar_links" class="no-padding">
-          <a class="waves-effect waves-grey" [routerLink]="link.route">
+          <a class="waves-effect waves-grey" [routerLink]="link.route" routerLinkActive="active-page">
             <i class="material-icons">{{link.icon}}</i>
             {{link.name}}
           </a>

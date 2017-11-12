@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {MasterComponent} from "../layout/master/master.component";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
     selector: 'app-login',
@@ -9,11 +10,19 @@ import {MasterComponent} from "../layout/master/master.component";
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-    constructor(private router: Router) {
+    form_model = {
+        email: "",
+        password: ""
+    };
+
+    constructor(private router: Router, private authService: AuthService) {
     }
 
     handleLogin() {
-        this.router.navigateByUrl('/dashboard');
+        this.authService.login(
+            this.form_model.email,
+            this.form_model.password
+        );
     }
 
     ngOnInit() {

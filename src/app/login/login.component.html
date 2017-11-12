@@ -7,18 +7,18 @@
             <div class="card-content ">
               <span class="card-title">Sign In</span>
               <div class="row">
-                <form class="col s12">
+                <form #loginForm="ngForm" (ngSubmit)="handleLogin()" class="col s12">
                   <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
+                    <input [(ngModel)]="form_model.email" name="email" id="email" type="email" required>
                     <label for="email">Email</label>
                   </div>
                   <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input [(ngModel)]="form_model.password" name="password" id="password" type="password" required>
                     <label for="password">Password</label>
                   </div>
                   <div class="col s12 right-align m-t-sm">
                     <a [routerLink]="'/register'" class="waves-effect waves-grey btn-flat">sign up</a>
-                    <a (click)="handleLogin()" class="waves-effect waves-light btn teal">sign in</a>
+                    <button type="submit" class="waves-effect waves-light btn teal" [disabled]="!loginForm.form.valid">sign in</button>
                   </div>
                 </form>
               </div>
