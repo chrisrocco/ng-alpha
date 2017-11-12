@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
-import {MasterComponent} from "../layout/master/master.component";
-import {AuthService} from "../auth/auth.service";
+import {AuthService} from "../../auth/auth.service";
 
 declare let swal: any;
 

@@ -1,9 +1,9 @@
 import {MasterComponent} from "./layout/master/master.component";
 import {Routes, RouterModule} from "@angular/router";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
 import {FormsComponent} from "./pages/forms/forms.component";
 import {AdminEventsComponent} from "./pages/events/admin-events/admin-events.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {RegisterComponent} from "./pages/register/register.component";
 
 const routes: Routes = [
     {

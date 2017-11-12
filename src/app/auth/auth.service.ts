@@ -18,23 +18,20 @@ export class AuthService {
     ) { }
 
     login(loginRequest: { email: string, password: string }): Promise<void> {
+        console.log(loginRequest);
         return new Promise((resolve, reject) => {
             this.http.post(environment.api + "/auth/login", loginRequest)
                 .toPromise()
                 .then((jwt_response: Response) => {
-
-                    console.log(jwt_response);
-
                     let jwt = jwt_response['token'];
-
                     const opts = {
                         headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`)
                     };
-
                     // profile data request
                     this.http.get(environment.api + "/users/profile", opts).subscribe((user_response: User) => {
                         this.userService.setSession(jwt, user_response);
-                        resolve()
+                        console.log(user_response, localStorage.user);
+                        resolve();
                     }, reject);
                 }, reject);
         });

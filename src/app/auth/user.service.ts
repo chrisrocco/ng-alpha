@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {User} from "../models/User";
 
 import jsonwebtoken from "jsonwebtoken";
+import {Observable} from "rxjs/Observable";
+import {Observer} from "rxjs/Observer";
 
 @Injectable()
-export class UserService {
+export class UserService implements OnInit {
 
     private static USER_LOCATION = "user";
     private static JWT_LOCATION = "jwt";
@@ -23,19 +25,16 @@ export class UserService {
         return this._user;
     }
 
-    private loadSessionData(){
-        let jwt = localStorage.getItem( UserService.JWT_LOCATION );
-        let user_json = localStorage.getItem( UserService.USER_LOCATION );
+    loadSessionData(){
+        this.jwt = localStorage.getItem( UserService.JWT_LOCATION );
+        this._user = JSON.parse(localStorage.getItem( UserService.USER_LOCATION ));
 
-        if(jwt && user_json){
-            this.jwt = jwt;
-            this.jwt_decoded = jsonwebtoken.decode(jwt);
-            this._user = JSON.parse(user_json);
+        if(this.jwt && this._user){
+            this.jwt_decoded = jsonwebtoken.decode(this.jwt);
         }
     }
 
     public setSession(jwt: string, user: User){
-        if(!jwt || !user) return;
         localStorage.setItem(UserService.JWT_LOCATION, jwt);
         localStorage.setItem(UserService.USER_LOCATION, JSON.stringify(user));
         this.loadSessionData();
@@ -48,11 +47,14 @@ export class UserService {
     }
 
     public isLoggedIn(){
-        if(!this.user || !this.jwt)
+        if(!this._user || !this.jwt)
             return false;
         if(this.jwt_decoded.exp < (new Date().getTime() / 1000))
             return false;
         return true;
     }
 
+    ngOnInit(): void {
+        this.loadSessionData();
+    }
 }
