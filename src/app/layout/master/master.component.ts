@@ -15,9 +15,9 @@ export class MasterComponent implements AfterViewInit {
 
     sidebar_links = [
         {
-            name: "Dashboard",
+            name: "Forms Page",
             icon: "settings_input_svideo",
-            route: '/login'
+            route: 'forms'
         },
         {
             name: 'Components',

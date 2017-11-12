@@ -6,6 +6,7 @@ import {MasterComponent} from './layout/master/master.component';
 import {routedComponents, routing} from "./app.routing";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsComponent } from './pages/forms/forms.component';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { RegisterComponent } from './register/register.component';
         MasterComponent,
         routedComponents,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        FormsComponent
     ],
     imports: [
         BrowserModule,

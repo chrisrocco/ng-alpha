@@ -1,8 +1,8 @@
-
 import {MasterComponent} from "./layout/master/master.component";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
+import {FormsComponent} from "./pages/forms/forms.component";
 
 const routes: Routes = [
     {
@@ -12,7 +12,13 @@ const routes: Routes = [
     },
     {
         path: 'dashboard',
-        component: MasterComponent
+        component: MasterComponent,
+        children: [
+            {
+                path: 'forms',
+                component: FormsComponent
+            }
+        ]
     },
     {
         path: 'login',
@@ -26,4 +32,4 @@ const routes: Routes = [
 
 export const routing = RouterModule.forRoot(routes);
 
-export const routedComponents = [MasterComponent, LoginComponent];
+export const routedComponents = [MasterComponent, LoginComponent, FormsComponent];
