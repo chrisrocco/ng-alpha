@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {MasterComponent} from './layout/master/master.component';
 import {routedComponents, routing} from "./app.routing";
-import { FormsComponent } from './pages/forms/forms.component';
 import {AuthService} from "./auth/auth.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service"
 import {FormsModule} from "@angular/forms";
@@ -20,6 +19,7 @@ import {AppUsersService} from "./services/app-users/app-users.service";
 import {EventsService} from "./services/events/events.service";
 import { UserSelectorComponent } from './shared/user-selector/user-selector.component';
 import { MarketSelectorComponent } from './shared/market-selector/market-selector.component';
+import {BookingComponent} from "./pages/booking/booking.component";
 
 @NgModule({
     declarations: [
@@ -28,7 +28,7 @@ import { MarketSelectorComponent } from './shared/market-selector/market-selecto
         routedComponents,
         LoginComponent,
         RegisterComponent,
-        FormsComponent,
+        BookingComponent,
         AdminEventsComponent,
         UserSelectorComponent,
         MarketSelectorComponent,

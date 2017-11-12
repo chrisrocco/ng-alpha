@@ -23,7 +23,7 @@ export class MasterComponent implements AfterViewInit, OnInit {
         {
             name: "Admin Book",
             icon: "shopping_cart",
-            route: 'forms'
+            route: 'booking'
         },
         {
             name: "Admin Events",

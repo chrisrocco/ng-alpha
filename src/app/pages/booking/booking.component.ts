@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MarketService} from "../../services/market/market.service";
 
 @Component({
-    selector: 'app-forms',
-    templateUrl: './forms.component.html',
+    selector: 'app-booking',
+    templateUrl: './booking.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class FormsComponent implements OnInit {
+export class BookingComponent implements OnInit {
 
     market;
     user;
