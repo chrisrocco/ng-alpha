@@ -6,125 +6,38 @@
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Input fields</span><br>
                     <div class="row">
                         <form class="col l6">
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <p>Select a User</p>
-                                    <ul class="collection">
-                                        <li class="collection-item avatar" style="min-height: 0" *ngIf="selectedUser">
-                                            <img [src]="selectedUser.image" alt="" class="circle">
-                                            <span class="title">{{selectedUser.name}}</span>
-                                            <p>{{selectedUser.email}}</p>
-                                            <a (click)="selectedUser = null" class="secondary-content btn-floating red waves-effect"><i
-                                                    class="material-icons">clear</i></a>
-                                        </li>
-                                        <li class="collection-item avatar" style="min-height: 0" *ngIf="!selectedUser">
-                                            <i class="material-icons circle">info_outline</i>
-                                            <span class="title">No User Selected</span>
-                                            <p>please select a user</p>
-                                            <!--<a href="#!" class="secondary-content"><i class="material-icons">perm_identity</i></a>-->
-                                            <a (click)="selectedUser = null" class="waves-effect waves-grey btn modal-trigger secondary-content waves-effect"
-                                               materialize="leanModal"
-                                               data-target="modal1">
-                                                Select User</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <app-user-selector
+                                    (onUserSelect)="onUserSelect($event)"
+                                    (onUserDeselect)="onUserDeselect()">
+                                </app-user-selector>
 
                                 <div class="input-field col s12">
-                                    <select materialize="material_select" [materializeSelectOptions]="markets"
-                                            [(ngModel)]="selectedMarket" name="selectedMarket">
-                                        <option *ngFor="let mkt of markets" [ngValue]="mkt">{{mkt.name}}</option>
-                                    </select>
-                                    <label>Select a Market</label>
+                                    <app-market-selector
+                                        (onMarketSelect)="onMarketSelect($event)">
+                                    </app-market-selector>
                                 </div>
 
                                 <div class="col s12">
                                     <label for="eventDateField">Event Date</label>
-                                    <input id="eventDateField" class="datepicker" materialize="pickadate">
+                                    <input name="date" id="eventDateField" class="datepicker"
+                                           materialize="pickadate"
+                                           [(ngModel)]="date"
+                                           (change)="onDateSelect()">
                                 </div>
                             </div>
                         </form>
                         <form>
                             <div class="col l6">
-                                <img *ngIf="selectedMarket" materialize="materialbox"
-                                     class="materialboxed responsive-img" [src]="selectedMarket.image">
+                                <img *ngIf="market" materialize="materialbox"
+                                     class="materialboxed responsive-img" [src]="market.image">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="modal1" class="modal modal-fixed-footer" style="width: 900px">
-        <div class="modal-content">
-            <div class="row">
-                <div class="col s6">
-                    <div class="input-field">
-                        <input [(ngModel)]="userSearch" (change)="filterUsers(userSearch)" id="userSearch"
-                               name="userSearch" placeholder="Search Users">
-                    </div>
-                    <ul class="collection">
-                        <li *ngFor="let user of users" class="collection-item avatar" style="min-height: 0">
-                            <img [src]="user.image" alt="" class="circle">
-                            <span class="title">{{user.name}}</span>
-                            <p>{{user.email}}</p>
-                            <a (click)="selectUser(user)" class="secondary-content btn-floating waves-effect"><i
-                                    class="material-icons">play_arrow</i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col s6">
-                    <div class="card-title">Selected User</div>
-                    <ul class="collection">
-                        <li class="collection-item avatar" style="min-height: 0" *ngIf="selectedUser">
-                            <img [src]="selectedUser.image" alt="" class="circle">
-                            <span class="title">{{selectedUser.name}}</span>
-                            <p>{{selectedUser.email}}</p>
-                            <a (click)="selectedUser = null" class="secondary-content btn-floating red waves-effect"><i
-                                    class="material-icons">clear</i></a>
-                        </li>
-                        <li class="collection-item avatar" style="min-height: 0" *ngIf="!selectedUser">
-                            <i class="material-icons circle">info_outline</i>
-                            <span class="title">No User Selected</span>
-                            <p>please select a user</p>
-                            <!--<a href="#!" class="secondary-content"><i class="material-icons">perm_identity</i></a>-->
-                        </li>
-                    </ul>
-                    <div class="card-title">.. or Create a User</div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="1name" type="text" class="validate">
-                                    <label for="1name">Account Name</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="2name" type="text" class="validate">
-                                    <label for="2name">Email</label>
-                                </div>
-                                <div class="input-group">
-                                    <div class="input-field col s6">
-                                        <p class="no-m">* Password will be created as <b>tcc-guest</b></p>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <button class="waves-effect waves-light btn blue-grey m-b-xs" type="button">Create
-                                            User
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-blue btn-flat ">Continue</a>
         </div>
     </div>
 </main>

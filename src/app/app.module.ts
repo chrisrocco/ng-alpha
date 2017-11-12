@@ -18,6 +18,8 @@ import {MaterializeModule} from "angular2-materialize";
 import {MarketService} from "./services/market/market.service";
 import {AppUsersService} from "./services/app-users/app-users.service";
 import {EventsService} from "./services/events/events.service";
+import { UserSelectorComponent } from './shared/user-selector/user-selector.component';
+import { MarketSelectorComponent } from './shared/market-selector/market-selector.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import {EventsService} from "./services/events/events.service";
         RegisterComponent,
         FormsComponent,
         AdminEventsComponent,
+        UserSelectorComponent,
+        MarketSelectorComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MarketService} from "../../services/market/market.service";
-import {AppUsersService} from "../../services/app-users/app-users.service";
 
 @Component({
     selector: 'app-forms',
@@ -9,42 +8,32 @@ import {AppUsersService} from "../../services/app-users/app-users.service";
 })
 export class FormsComponent implements OnInit {
 
-    markets;
-    selectedMarket;
+    market;
+    user;
+    date;
 
-    userSearch;
-    usersOriginal;
-    users;
-    selectedUser;
+    constructor() { }
 
-    constructor(
-        private marketService: MarketService,
-        private appUsersService: AppUsersService
-    ) { }
-
-    selectUser( user ){
-        this.selectedUser = user;
-        this.filterUsers(user.name);
+    onUserSelect(user){
+        this.user = user;
+        console.log("User Selected", user);
     }
 
-    filterUsers( search ){
-        search = search.toLowerCase();
-        this.users = this.usersOriginal.filter( user => {
-            return user.name.toLowerCase().includes(search);
-        })
+    onUserDeselect(){
+        this.user = null;
+        console.log("User Deselected");
+    }
+
+    onMarketSelect(market){
+        this.market = market;
+        console.log("market selected", market);
+    }
+
+    onDateSelect(){
+        console.log("date selected", this.date);
     }
 
     ngOnInit() {
-        this.marketService.all()
-            .subscribe(data => {
-                this.markets = data;
-                this.selectedMarket = data[0];
-            });
-        this.appUsersService.all()
-            .subscribe(data => {
-                this.usersOriginal = data;
-                this.users = data;
-            })
     }
 
 }

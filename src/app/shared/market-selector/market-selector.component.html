@@ -1,0 +1,5 @@
+<select materialize="material_select" [materializeSelectOptions]="markets"
+        (change)="marketChanged()"
+        [(ngModel)]="selectedMarket" name="selectedMarket">
+  <option *ngFor="let mkt of markets" [ngValue]="mkt">{{mkt.name}}</option>
+</select>
