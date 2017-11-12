@@ -3,6 +3,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {FormsComponent} from "./pages/forms/forms.component";
+import {AdminEventsComponent} from "./pages/events/admin-events/admin-events.component";
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
             {
                 path: 'forms',
                 component: FormsComponent
+            },
+            {
+                path: 'events',
+                component: AdminEventsComponent
             }
         ]
     },

@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {MasterComponent} from "../layout/master/master.component";
 import {AuthService} from "../auth/auth.service";
 
+declare let swal: any;
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -15,8 +17,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         password: ""
     };
 
-    constructor(private router: Router, private authService: AuthService) {
-    }
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) {}
 
     handleLogin() {
         this.authService.login(
@@ -27,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.router.navigateByUrl('/dashboard');
             },
             err => {
-                alert("Invalid Login");
+                swal("invalid login");
             }
         );
     }

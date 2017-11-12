@@ -19,6 +19,11 @@ export class MasterComponent implements AfterViewInit {
             icon: "settings_input_svideo",
             route: 'forms'
         },
+        {
+            name: "Admin Events",
+            icon: "today",
+            route: "events"
+        }
     ];
 
     constructor() {}
